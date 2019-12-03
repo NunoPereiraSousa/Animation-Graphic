@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="300" height="250" style="border:solid 1px green">
+        Your browser does not support HTML5 Canvas.
+    </canvas> <br>
+    <input type="button" value="LIMPAR" onclick="cleanText()">
+    <label for="lineWidth">Line Width</label>
+    <select id="lineWidth" onchange="getLineWidth()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
+    <label for="color">Color</label>
+    <select id="color" onchange="getColor()">
+        <option value="Red">Red</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Blue">Blue</option>
+    </select>
+
+    <script>
+        const canvas = document.querySelector('#canvas');
+        const context = canvas.getContext("2d");
+
+        const rect = canvas.getBoundingClientRect();
+
+        let draw = false
+
+        let x, y
+
+        canvas.addEventListener('mousedown', e => {
+            draw = true
+            context.beginPath();
+        })
+
+        canvas.addEventListener('mousemove', e => {
+            x = e.clientX - rect.left
+            y = e.clientY - rect.top
+
+            context.strokeStyle = getColor();
+            context.lineWidth = getLineWidth();
+
+            if (draw === true) {
+                context.lineTo(x, y);
+                context.stroke();
+            }
+        })
+
+        canvas.addEventListener('mouseup', e => {
+            draw = false
+        })
+
+        canvas.addEventListener('mouseleave', e => {
+            context.beginPath();
+            draw = false
+        })
+
+        function getColor() {
+            context.strokeStyle = document.getElementById('color').value;
+        }
+
+        function getLineWidth() {
+            context.lineWidth = document.getElementById('lineWidth').value;
+        }
+    </script>
+</body>
+
+</html>

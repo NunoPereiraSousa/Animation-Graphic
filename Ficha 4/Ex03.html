@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cx = canvas.width / 2;
+        let cy = canvas.height / 2;
+
+        let keys = []
+
+        window.addEventListener('keydown', keyPressed);
+        window.addEventListener('keyup', keyNotPressed);
+
+        function keyPressed(e) {
+            keys[e.keyCode] = true
+        }
+
+        function keyNotPressed(e) {
+            keys[e.keyCode] = false
+        }
+
+        function animation() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (keys[37] === true && cx - 20 >= 0) {
+                cx -= 1
+            }
+
+            if (keys[39] === true && cx + 20 <= canvas.width) {
+                cx += 1
+            }
+
+            if (keys[38] === true && cy - 20 >= 0) {
+                cy -= 1
+            }
+
+            if (keys[40] === true && cy + 20 <= canvas.height) {
+                cy += 1
+            }
+
+            context.beginPath();
+            context.arc(cx, cy, 20, 0, Math.PI / 180 * 360, false);
+            context.fill();
+            
+            window.requestAnimationFrame(animation)
+        }
+        window.onload = animation()
+        
+    </script>
+</body>
+
+</html>

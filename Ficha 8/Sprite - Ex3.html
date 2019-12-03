@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Sprite</title>
+</head>
+
+<body>
+	<canvas id="myCanvas" width="300" height="300" style="border:solid 3px blue">
+		Your browser does not support HTML5 Canvas.
+	</canvas>
+	<script>
+		const canvas = document.querySelector('#myCanvas');
+		const context = canvas.getContext("2d");
+
+		const W = canvas.width;
+		const H = canvas.height;
+
+		let images = {};
+		let totalResources = 6;
+		let numResourcesLoaded = 0;
+		let fps = 15;
+
+		loadImage("leftArm");
+		loadImage("legs");
+		loadImage("torso");
+		loadImage("rightArm");
+		loadImage("head");
+		loadImage("hair");
+
+		function loadImage(name) {
+			images[name] = new Image();
+			images[name].src = "images/" + name + ".png";
+			images[name].onload = function () {
+				resourceLoaded(); //only starts the animation after loading all 6 images			
+			};
+		}
+
+		function resourceLoaded() {
+			numResourcesLoaded++;
+			console.log(numResourcesLoaded + "...");
+
+			if (numResourcesLoaded == totalResources) {
+				setInterval(render, 1000 / fps); //start animation
+				console.log("... start animation!");
+			}
+		}
+
+		let x = 120;
+		let y = 250;
+		let breathInc = 0.5; //breath deviation in between frames
+		let breathMax = 4; //maximum breath amplitude
+		let breathDev = 0
+
+		function render() {
+			context.clearRect(0, 0, W, H); // clears the canvas 
+
+			//Draw Images
+			context.drawImage(images["leftArm"], x + 40, y - 42 + breathDev);
+			context.drawImage(images["torso"], x, y - 50);
+			context.drawImage(images["legs"], x, y);
+			context.drawImage(images["head"], x - 10, y - 125 + breathDev);
+			context.beginPath();
+			context.fillStyle = 'black';
+			context.arc(x + 45, y - 71 + breathDev, 5, 0, 2 * Math.PI, false);
+			context.arc(x + 60, y - 71 + breathDev, 5, 0, 2 * Math.PI, false);
+			context.fill();
+			context.beginPath();
+			context.fillStyle = 'green';
+			context.arc(x + 45, y - 71 + breathDev, 2, 0, 2 * Math.PI, false);
+			context.arc(x + 60, y - 71 + breathDev, 2, 0, 2 * Math.PI, false);
+			context.fill();
+			context.drawImage(images["hair"], x - 37, y - 138 + breathDev);
+			context.drawImage(images["rightArm"], x - 15, y - 42 + breathDev);
+
+			breathDev += breathInc
+
+			if (breathDev === breathMax)
+				breathInc = -0.5
+
+			if (breathDev === -breathMax)
+				breathInc = 0.5
+		}
+	</script>
+</body>
+
+</html>

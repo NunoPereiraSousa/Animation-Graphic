@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="600" height="600" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        function draw() {
+            context.fillStyle = '#FF0000';
+            context.fillRect(canvas.width / 2 - 150, canvas.height / 2 - 125, 300, 250);
+
+            context.strokeStyle = '#6AB879';
+            context.lineWidth = 10;
+            context.strokeRect(canvas.width / 2 - 100, canvas.height / 2 - 75, 300, 250);
+        }
+        draw()
+    </script>
+</body>
+
+</html>

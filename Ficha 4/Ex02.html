@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        const cx = canvas.width;
+        const cy = canvas.height;
+
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.font = '50px sans-serif';
+
+        let text = ''
+
+        window.addEventListener('keypress', e => {
+            context.clearRect(0, 0, cx, cy);
+
+            text += e.key
+            context.fillText(text, cx / 2, cy / 2);
+        })
+    </script>
+</body>
+
+</html>

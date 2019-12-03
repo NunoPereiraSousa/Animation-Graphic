@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="300" height="150" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        function draw() {
+            context.strokeStyle = '#FF0000';
+            context.lineWidth = 3;
+
+            context.beginPath();
+            context.moveTo(50, 25);
+            context.lineTo(50, 125);
+            context.lineTo(150, 25);
+            context.lineTo(150, 125);
+            context.lineTo(250, 25);
+            context.lineTo(250, 125);
+            context.stroke();           
+        }
+        draw()
+    </script>
+</body>
+
+</html>

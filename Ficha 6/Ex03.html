@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500" style="border:solid 1px green">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas');
+        const context = canvas.getContext("2d");
+
+        let nFrames = 0
+
+        let W = canvas.width
+        let H = canvas.height
+
+        let radius = 20
+        let A = 100
+
+        context.strokeStyle = 'orange';
+
+        function animation() {
+            context.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            context.fillRect(0, 0, W, H);
+
+            let t = nFrames * 50
+
+            x = A * Math.sin(2 * Math.PI / 2000 * t) + W / 2
+
+            nFrames++
+
+            context.beginPath();
+            context.arc(x, H / 2, radius, 0, 2 * Math.PI, false);
+            context.stroke();
+        }
+        setInterval(animation, 50)
+    </script>
+</body>
+
+</html>

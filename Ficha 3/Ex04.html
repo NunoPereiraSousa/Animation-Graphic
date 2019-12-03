@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas><br>
+    <input type="button" value="EX.1" onclick="ex1()"> </input>
+    <input type="button" value="EX.2" onclick="ex2()"> </input>
+    <input type="button" value="EX.3" onclick="ex3()"> </input>
+
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+        context.font = '20px sans-serif';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+
+
+        const text = 'Hello!!!'
+
+        function ex1() {
+            context.clearRect(0, 0, W, H);
+
+            context.fillText(text, W / 2, H / 2 - 100);
+
+            context.save();
+            context.scale(-1, 1);
+            context.beginPath();
+            context.fillText(text, -W / 2, H / 2 - 50);
+            context.fill();
+            context.restore();
+
+            context.save();
+            context.scale(1, -1);
+            context.beginPath();
+            context.fillText(text, W / 2, -H / 2);
+            context.fill();
+            context.restore();
+
+            context.save();
+            context.scale(-1, -1);
+            context.beginPath();
+            context.fillText(text, -W / 2, -H / 2 - 50);
+            context.fill();
+            context.restore();
+        }
+
+        function ex2() {
+            context.clearRect(0, 0, W, H);
+
+            context.translate(W / 2, H / 2);
+
+            context.fillStyle = '#FF0548';
+            context.fillRect(-50, -50, 100, 100);
+
+            context.save();
+            context.rotate(Math.PI / 180 * 30);
+            context.fillStyle = '#FA5C55';
+            context.fillRect(-50, -50, 100, 100);
+            context.restore();
+
+            context.save();
+            context.rotate(Math.PI / 180 * 60);
+            context.fillStyle = '#F47234';
+            context.fillRect(-50, -50, 100, 100);
+            context.restore();
+
+        }
+
+
+
+        function ex3() {
+            context.clearRect(0, 0, W, H);
+
+            let text = 'round and round '
+            let angle = 0
+
+            // for (let i = 0; i < text.length; i++) {
+
+            //     let x = W / 2 + 100 * Math.cos(angle)
+            //     let y = H / 2 + 100 * Math.sin(angle)
+
+            //     angle += 2 * Math.PI / text.length
+
+            //     context.fillText(text[i], x, y);
+
+            // }
+            // context.fill();
+
+            // ------------- OR ------------------
+
+            context.translate(W / 2, H / 2);
+
+            for (let i = 0; i < text.length; i++) {
+                context.fillText(text[i], 0, -100);
+                context.rotate(2 * Math.PI / text.length);
+            }
+            context.fill();
+        }
+    </script>
+</body>
+
+</html>

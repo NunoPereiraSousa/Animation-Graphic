@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Falling Balls</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+        let y = 0;
+
+        class Ball {
+            constructor(x, y, color, radius, vY) {
+                this.x = x;
+                this.y = y;
+                this.vY = vY;
+                this.color = color;
+                this.radius = radius
+            }
+
+            draw() {
+                context.fillStyle = this.color;                
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+                context.fill();
+            }
+
+            update() {
+                //check Canvas horizontal collisions
+                if (this.y >= H + this.radius * 2)
+                    this.y = -2 * this.radius
+                this.y += this.vY; //update vertical position 
+            }
+        }
+
+        //setup as many balls as wanted
+        let balls = new Array();
+        for (let i = 0; i < 5; i++) {
+            //random color
+            let R = Math.floor(Math.random() * 256);
+            let G = Math.floor(Math.random() * 256);
+            let B = Math.floor(Math.random() * 256);
+            let color = 'rgb(' + R + ',' + G + ',' + B + ')';
+            // let color = getRandomColor()
+            let radius = Math.floor((Math.random() * 10) + 20)
+            //random position (inside Canvas)
+            let x = radius + Math.random() * (W - 2 * radius);
+            y = -radius
+            let vY = 1 + Math.random() * 5
+
+            balls.push(new Ball(x, y, color, radius, vY))
+        }
+
+        function render() {
+            //fade Canvas
+            context.fillStyle = "rgba(255,255,255,0.25)"
+            context.fillRect(0, 0, W, H);
+
+            //draw & update
+            balls.forEach(ball => {
+                ball.draw();
+                ball.update();
+            });
+
+            //new frame
+            window.requestAnimationFrame(render);
+        }
+        render(); //start animate
+
+        function getRandomColor() {
+            let R = Math.floor(Math.random() * 256);
+            let G = Math.floor(Math.random() * 256);
+            let B = Math.floor(Math.random() * 256);
+            return 'rgb(' + R + ',' + G + ',' + B + ')';
+        }
+    </script>
+</body>
+
+</html>

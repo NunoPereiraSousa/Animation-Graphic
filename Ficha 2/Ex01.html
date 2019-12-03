@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Knight Rider</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="600" height="50" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let D = 50 // Square dimensions
+        let x = 0
+        let inc = 5
+
+        function animation() {
+            // Shadow
+            context.fillStyle = 'rgba(51,51,51,0.3)';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            // End shadow
+
+            // Square
+            context.fillStyle = '#FF0000';
+            context.fillRect(x, 0, D, D);
+            // End Square
+
+            // Increment x coordinate position
+            x += inc
+            // End increment x coordinate position
+
+            // Limit square space of movement
+            if (x >= canvas.width - D || x <= 0) {
+                inc = -inc
+            }
+            // End limit square space of movement
+
+            window.requestAnimationFrame(animation)
+        }
+        window.onload = animation()
+    </script>
+</body>
+
+</html>

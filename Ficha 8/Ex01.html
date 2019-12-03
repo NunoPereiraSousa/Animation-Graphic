@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IMAGES</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+    <p id="result"></p>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        let frameIndex = 0
+
+        let walkManImage = new Image();
+        walkManImage.src = 'images/sprite.png';
+
+        walkManImage.onload = function () {
+            setInterval(animation, 100)
+        }
+
+        function animation() {
+            context.clearRect(0, 0, W, H);
+            context.drawImage(walkManImage, 0, frameIndex * 100, 100, 100, W / 2 - 50, H / 2 - 50, 100, 100);
+            frameIndex++
+            if (frameIndex == 5) {
+                frameIndex = 0
+            }
+        }
+    </script>
+</body>
+
+</html>

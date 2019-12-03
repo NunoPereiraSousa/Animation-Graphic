@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="300" height="270" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        function hart() {
+            context.lineWidth = 10;
+            context.strokeStyle='#FF0000';
+            context.beginPath();
+            context.moveTo(150, 60);
+            context.bezierCurveTo(150, 30, 120, 30, 80, 30);
+            context.bezierCurveTo(60, 30, 30, 60, 30, 90);
+            context.bezierCurveTo(30, 180, 90, 210, 150, 240);
+            context.bezierCurveTo(210, 210, 270, 180, 270, 90);
+            context.bezierCurveTo(270, 60, 240, 30, 210, 30);
+            context.bezierCurveTo(180, 30, 150, 30, 150, 60);
+            context.stroke();
+        }
+        hart()
+    </script>
+</body>
+
+</html>

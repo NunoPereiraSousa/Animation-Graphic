@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bouncing Balls</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        //CLASS
+        class Ball { //construtor
+            constructor(x, y, direction, vel, vX, vY, color, radius) {
+                this.x = x; //initial X position
+                this.y = y; //initial Y position
+                this.direction = direction;
+                this.vel = vel;
+                this.vX = vX; //(constante) horizontal velocity
+                this.vY = vY; //(constante) horizontal velocity
+                this.color = color; //color
+                this.radius = radius
+            }
+
+            draw() {
+                context.fillStyle = this.color;
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                context.fill();
+            }
+
+            update() {
+                //check Canvas vertical collisions
+                if (this.x - 10 < 0 || this.x + 10 > W)
+                    this.vX = -this.vX;
+                //check Canvas horizontal collisions
+                if (this.y - 10 < 0 || this.y + 10 > H)
+                    this.vY = -this.vY;
+                this.x += this.vX; //update horizontal position 
+                this.y += this.vY; //update vertical position 
+            }
+        }
+
+        //setup as many balls as wanted
+        let balls = new Array();
+        for (let i = 0; i < 40; i++) {
+            let color = 'blue'
+            //random position (inside Canvas)
+            let x = 20 + Math.random() * (W - 2 * 20);
+            let y = 20 + Math.random() * (H - 2 * 20);
+            let vel = Math.random() * 5;
+            let direction = Math.random() * 2 * Math.PI;
+            let vX = vel * Math.cos(direction);
+            let vY = vel * Math.sin(direction);
+            let radius = 12 + Math.random() * 15
+
+            balls.push(new Ball(x, y, direction, vel, vX, vY, color, radius))
+        }
+
+        function render() {
+            context.clearRect(0, 0, W, H);
+
+            balls.forEach(function (ball) {
+                ball.draw();
+                ball.update();
+            });
+
+            balls.forEach(ball => {
+                ball.color = 'blue'
+            });
+
+            for (let i = 0; i < balls.length; i++) {
+                for (let j = i + 1; j < balls.length; j++) {
+                    ballCollision(balls[i], balls[j])
+                }
+            }
+
+            window.requestAnimationFrame(render);
+        }
+        render();
+
+        function ballCollision(a, b) {
+            let dx = a.x - b.x
+            let dy = a.y - b.y
+            let D = Math.sqrt(dx * dx + dy * dy);
+
+            if (D < (a.radius + b.radius)) {
+                a.color = 'red'
+                b.color = 'red'
+            }
+        }
+    </script>
+</body>
+
+</html>

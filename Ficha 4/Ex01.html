@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+
+        const rect = canvas.getBoundingClientRect()
+
+        canvas.addEventListener('mouseleave', e => {
+            context.beginPath();
+        })
+
+        canvas.addEventListener('mousemove', e => {
+            let x = e.clientX - rect.left
+            let y = e.clientY - rect.top
+
+            context.lineTo(x , y);
+            context.stroke();
+        })
+         
+    </script>
+</body>
+
+</html>

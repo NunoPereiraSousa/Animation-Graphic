@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cx = canvas.width / 2
+        let cy = canvas.height / 2
+
+        function linesAnimation() {
+            let randomX = Math.random() * canvas.width // Random x coordinate position
+            let randomY = Math.random() * canvas.height // Random y coordinate position
+
+            context.strokeStyle = getRandomColor();
+            context.beginPath();
+            context.moveTo(cx, cy);
+            context.lineTo(randomX, randomY);
+            context.stroke();
+
+            window.requestAnimationFrame(linesAnimation)
+        }
+
+        function getRandomColor() {
+            let r = Math.floor(Math.random() * 256)
+            let g = Math.floor(Math.random() * 256)
+            let b = Math.floor(Math.random() * 256)
+            return `rgb(${r}, ${g}, ${b})`
+        }
+
+        window.onload = linesAnimation()
+    </script>
+</body>
+
+</html>

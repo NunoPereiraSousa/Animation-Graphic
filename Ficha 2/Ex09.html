@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex09</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="400" height="470" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cpY = 400 // Control point y of the quadratic curve
+        let y = 250 // y of the moveto method
+        let inc = 1 // Number of pixels incremented each frame
+        let inc2 = 0.05 // Number of pixels incremented each frame
+
+        function render() {
+            face()
+
+            cpY -= inc
+            y -= inc2
+
+            if (cpY >= 400 || cpY <= 250) {
+                inc = -inc
+            }
+
+            if (y >= 255 || y <= 245) {
+                inc2 = -inc2
+            }
+
+            window.requestAnimationFrame(render)
+        }
+        render()
+
+        function face() {
+            context.lineWidth = 10;
+            context.fillStyle = '#D3D3D3';
+            context.beginPath();
+            context.arc(200, 233, 150, 0, 2 * Math.PI, false);
+            context.fill();
+            context.stroke();
+            
+            // Left Eye
+            context.lineWidth = 20;
+            context.beginPath();
+            context.moveTo(170, 130);
+            context.lineTo(160, 200);
+            context.stroke();
+            // End left Eye
+
+            // Left right
+            context.beginPath();
+            context.moveTo(230, 130);
+            context.lineTo(240, 200);
+            context.stroke();
+            // End right Eye
+
+            // Mouth
+            context.beginPath();
+            context.moveTo(100, y);
+            context.quadraticCurveTo(200, cpY, 300, y);
+            context.stroke();
+            // End mouth
+        }
+    </script>
+</body>
+
+</html>

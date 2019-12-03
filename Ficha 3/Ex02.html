@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cX = canvas.width / 2
+        let cY = canvas.height / 2
+        let R = 200 // Radius
+        let N = 50 // Number of star points
+        let angle = 0
+        context.strokeStyle = '#FF0000';
+        context.lineWidth = 5;
+        context.lineJoin = 'bevel';
+        star()
+        arcs()
+
+        function star() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            let x, y
+
+            for (let i = 0; i <= N * 2; i++) {
+                if (i % 2 !== 0) {
+                    x = cX + (R / 2) * Math.cos(angle)
+                    y = cY + (R / 2) * Math.sin(angle)
+                } else {
+                    x = cX + R * Math.cos(angle)
+                    y = cY + R * Math.sin(angle)
+                }
+
+                angle += 2 * Math.PI / (N * 2)
+
+                if (i === 0) {
+                    context.beginPath();
+                    context.moveTo(x, y);
+                } else {
+                    context.lineTo(x, y);
+                }
+            }
+            context.stroke();
+            context.closePath();
+        }
+
+        function arcs() {
+            let gradientB = context.createLinearGradient(cX - R / 2, cY - R, cX + R / 2, cY + R);
+            gradientB.addColorStop(0, '#00FFFF');
+            gradientB.addColorStop(1, '#FF0000');
+            context.fillStyle = gradientB;
+            context.beginPath();
+            context.arc(cX, cY, 200 * 0.90, 0, Math.PI / 180 * 360, false);
+            context.fill();
+            context.stroke();
+
+            context.fillStyle = '#FFFFFF';
+            context.beginPath();
+            context.arc(cX, cY, 200 * 0.10, 0, Math.PI / 180 * 360, false);
+            context.fill();
+            context.stroke();
+        }
+    </script>
+</body>
+
+</html>

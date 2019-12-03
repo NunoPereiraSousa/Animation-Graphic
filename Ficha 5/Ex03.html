@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cx = canvas.width / 2;
+        let cy = canvas.height / 2;
+
+        let radius = 10
+        let vel = 2
+        let randomDir = Math.random() * 2 * Math.PI
+
+        let x = vel * Math.cos(randomDir)
+        let y = vel * Math.sin(randomDir)
+
+        function animation() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            context.beginPath();
+            context.arc(cx, cy, radius, Math.PI / 180 * 0, Math.PI / 180 * 360, false);
+            context.fill();
+            
+            cx += x
+            cy += y
+
+            if (cx + radius >= canvas.width || cx - radius <= 0 ||
+                cy - radius <= 0 || cy >= canvas.height - radius)
+                clearInterval(time)
+        }
+
+        let time = setInterval(animation, 10)
+    </script>
+</body>
+
+</html>

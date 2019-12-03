@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="800" height="400" style="border:solid 30px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        function draw() {
+            context.lineWidth = 20;
+
+            context.strokeStyle = '#0085C7';
+            context.beginPath();
+            context.arc(200, 175, 75, 0, 2 * Math.PI, false);
+            context.stroke();
+
+            context.strokeStyle = '#F4C300';
+            context.beginPath();
+            context.arc(300, 250, 75, 0, 2 * Math.PI, false);
+            context.stroke();
+
+            context.strokeStyle = '#000000';
+            context.beginPath();
+            context.arc(390, 175, 75, 0, 2 * Math.PI, false);
+            context.stroke();
+
+            context.strokeStyle = '#009F3D';
+            context.beginPath();
+            context.arc(500, 250, 75, 0, 2 * Math.PI, false);
+            context.stroke();
+
+            context.strokeStyle = '#DF0024';
+            context.beginPath();
+            context.arc(580, 175, 75, 0, 2 * Math.PI, false);
+            context.stroke();
+        }
+        draw()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500" style="border:solid 1px green">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas');
+        const context = canvas.getContext("2d");
+
+        let v = 2 //velocity per frame
+
+        let D = 20
+        let R = 100
+
+        let px = canvas.width / 2
+        let py = canvas.height / 2
+
+        function animation() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            let x = px + R * Math.cos(v * Math.PI / 180)
+            let y = py + R * Math.sin(v * Math.PI / 180)
+
+            v++
+
+            context.fillRect(x - (D / 2), y - (D / 2), D, D);
+        }
+
+        setInterval(animation, 2000 / 360)
+    </script>
+</body>
+
+</html>

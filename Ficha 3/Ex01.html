@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex01</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="400" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cx = canvas.width / 2
+        let cy = canvas.height / 2
+
+        function draw() {
+            context.beginPath();
+            context.moveTo(250, 50);
+            context.lineTo(300, 150);
+            context.lineTo(260, 150);
+            context.lineTo(260, 300);
+            context.lineTo(300, 350);
+            context.lineTo(250, 320);
+            context.lineTo(200, 350);
+            context.lineTo(240, 300);
+            context.lineTo(240, 150);
+            context.lineTo(200, 150);
+            context.lineTo(250, 50);
+            context.stroke();
+
+            let gradient = context.createLinearGradient(250, 50, 300, 350);
+            gradient.addColorStop(0, '#FF0000');
+            gradient.addColorStop(0.20, '#FF9A00');
+            gradient.addColorStop(0.40, '#FF0');
+            gradient.addColorStop(0.60, '#5BAD00');
+            gradient.addColorStop(1, '#0016D3');
+            context.fillStyle = gradient;
+            context.fill();
+        }
+        draw()
+    </script>
+</body>
+
+</html>

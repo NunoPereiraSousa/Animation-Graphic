@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ex01</title>
+    <style>
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2><u>Flag of Germany</u></h2>
+    <canvas id="flag-germany" width="150px" height="75px"></canvas>
+
+    <h2><u>Flag of Russia</u></h2>
+    <canvas id="flag-Russia" width="150px" height="75px"></canvas>
+
+    <h2><u>Flag of sweden</u></h2>
+    <canvas id="flag-sweden" width="160px" height="100px"></canvas>
+
+    <h2><u>Flag of switzerland</u></h2>
+    <canvas id="flag-switzerland" width="170px" height="160px"></canvas>
+
+    <h2><u>Flag of france</u></h2>
+    <canvas id="flag-france" width="150px" height="100px"></canvas>
+
+    <script>
+        // GERMANY
+        const canvas = document.querySelector("#flag-germany");
+        const context = canvas.getContext("2d");
+        context.fillStyle = '#000000';
+        context.fillRect(0, 0, 150, 25);
+        context.fillStyle = '#DD0000';
+        context.fillRect(0, 25, 150, 50);
+        context.fillStyle = '#FFCE00';
+        context.fillRect(0, 50, 150, 75);
+        // END GERMANY
+
+        // RUSSIA
+        const canvas1 = document.querySelector("#flag-Russia");
+        const context1 = canvas1.getContext("2d");
+        context1.fillStyle = '#FFFFFF';
+        context1.fillRect(0, 0, 150, 25);
+        context1.fillStyle = '#0033A0';
+        context1.fillRect(0, 25, 150, 25);
+        context1.fillStyle = '#DA291C';
+        context1.fillRect(0, 50, 150, 25);
+        // END RUSSIA
+
+        // SWEDEN
+        const canvas2 = document.querySelector("#flag-sweden");        
+        const context2 = canvas2.getContext("2d");
+        context2.fillStyle = '#004B87';
+        context2.fillRect(0, 0, 160, 100);
+        context2.fillStyle = '#FFCD00';
+        context2.fillRect(55, 0, 20, 100);
+        context2.fillStyle = '#FFCD00';
+        context2.fillRect(0, 40, 160, 20);
+        // END SWEDEN
+
+        // SWITZERLAND
+        const canvas3 = document.querySelector("#flag-switzerland");
+        const context3 = canvas3.getContext("2d");
+        context3.fillStyle = '#D52B1E';
+        context3.fillRect(0, 0, 170, 160);
+        context3.fillStyle = '#FFFFFF';
+        context3.fillRect(75, 40, 20, 80);
+        context3.fillStyle = '#FFFFFF';
+        context3.fillRect(45, 70, 80, 20);
+
+
+        // END FRANCE
+        const canvas4 = document.querySelector("#flag-france");
+        const context4 = canvas4.getContext("2d");
+        context4.fillStyle = '#0055A4';
+        context4.fillRect(0, 0, 50, 100);
+        context4.fillStyle = '#FFFFFF';
+        context4.fillRect(50, 0, 50, 100);
+        context4.fillStyle = '#EF4135';
+        context4.fillRect(100, 0, 50, 100);
+        // END FRANCE
+    </script>
+</body>
+
+</html>

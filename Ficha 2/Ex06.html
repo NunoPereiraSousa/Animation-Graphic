@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex02</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #333333;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1000" height="500" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        function draw() {
+            context.fillStyle = '#FF0000';
+            context.beginPath();
+            context.arc(100, 250, 40, 0, 2 * Math.PI, false);
+            context.fill();
+
+            context.fillStyle = '#0000FF';
+            context.beginPath();
+            context.arc(300, 250, 40, 0, Math.PI, false);
+            context.fill();
+
+            context.fillStyle = '#FF0';
+            context.beginPath();
+            context.arc(500, 250, 40, Math.PI, 0, false);
+            context.fill();
+
+            context.fillStyle = '#FFE489';
+            context.beginPath();
+            context.arc(700, 250, 40, 3 * Math.PI / 5, 9 * Math.PI / 5, false);
+            context.fill();
+
+            context.fillStyle = '#CC5489';
+            context.beginPath();
+            context.arc(900, 250, 40, 3 * Math.PI / 5, 9 * Math.PI / 5, true);
+            context.fill();
+        }
+        draw()
+    </script>
+</body>
+
+</html>

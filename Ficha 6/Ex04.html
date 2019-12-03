@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas")
+        const context = canvas.getContext("2d")
+
+        const W = canvas.width
+        const H = canvas.height
+
+        let x = 0
+        let y = 0
+        let angle = 0
+        let amplitude = 45
+        let initialAngle = 90
+        let t = 0
+        let R = 250
+
+        function animation() {
+            context.clearRect(0, 0, W, H);
+
+            angle = amplitude * Math.sin(t) + initialAngle
+            x = W / 2 + R * Math.cos(angle * Math.PI / 180)
+            y = 20 + R * Math.sin(angle * Math.PI / 180)
+            t += 0.02
+
+            context.beginPath();
+            context.arc(W / 2, 20, 15, 0, Math.PI * 2);
+            context.fillStyle = '#888';
+            context.fill();
+            context.closePath();
+
+            context.beginPath();
+            context.arc(W / 2, 20, 10, 0, Math.PI * 2);
+            context.fillStyle = '#000000';
+            context.fill();
+            context.closePath();
+
+            context.beginPath();
+            context.lineWidth = 6;
+            context.moveTo(W / 2, 20);
+            context.lineTo(x, y);
+            context.stroke();
+            context.closePath();
+
+            context.beginPath();
+            let gradient = context.createLinearGradient(x - 40, y - 40, x + 40, y + 40);
+            gradient.addColorStop(0, '#555');
+            gradient.addColorStop(0.5, '#FFFFFF');
+            gradient.addColorStop(1, '#555');
+            context.arc(x, y, 40, 0, Math.PI * 2);
+            context.fillStyle = gradient;
+            context.fill();
+            context.closePath();
+            window.requestAnimationFrame(animation)
+        }
+        animation()
+    </script>
+</body>
+
+</html>

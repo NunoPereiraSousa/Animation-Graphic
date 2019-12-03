@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Falling Balls</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;      
+
+        let x1 = 50
+        let x2 = 350
+        let vel = 1
+        let rectW = 100
+        let rectH = 50
+
+        function render() {
+            context.clearRect(0, 0, W, H);
+
+            context.fillStyle = 'blue';
+            context.fillRect(x1, H / 2, rectW, rectH);
+
+            context.fillStyle = 'red';
+            context.fillRect(x2, H / 2, rectW, rectH);
+
+            x1 += vel
+            x2 += -vel
+
+            if (x1 < 0 || x1 === W - rectW || x2 < 0 || x2 === W - rectW) {
+                vel = -vel
+            }
+
+            window.requestAnimationFrame(render);
+        }
+        render();
+
+        function rectCollision() {
+            if (x1 + rectW < x2
+            || x2 + rectW < x1
+            || ) {
+                
+            }
+        }
+    </script>
+</body>
+
+</html>

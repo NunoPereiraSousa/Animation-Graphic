@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex01</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: auto;
+            background: #FFFFFF;
+        }
+
+        canvas {
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="400" style="border:solid 3px black"></canvas>
+
+    <script>
+        const canvas = document.querySelector("#myCanvas");
+        const context = canvas.getContext("2d");
+
+        let cx = canvas.width / 2
+        let cy = canvas.height / 2
+        context.font = '50px sans-serif';
+        context.textBaseline = 'middle';
+        context.textAlign = 'center';
+
+        function text() {
+            // context.fillStyle = 'grey';
+            // context.shadowColor = 'grey';
+            // context.shadowOffsetX = 3;
+            // context.shadowOffsetY = 3;
+            // context.beginPath();
+            // context.fillText('VINTAGE RETRO', cx, cy);
+            // context.fill();
+
+            // context.shadowColor = 'gainsboro';
+            // context.shadowOffsetX = 2;
+            // context.shadowOffsetY = 2;
+            // context.beginPath();
+            // context.fillText('VINTAGE RETRO', cx, cy);
+            // context.fill();
+
+            // -------------------------------------------------
+
+            // context.fillStyle = 'white';
+            // context.shadowBlur = 120;
+
+            // for (let i = 0; i < 8; i++) {
+            //     if (i < 5) {
+            //         context.shadowBlur -= 24;
+            //         context.shadowColor = '#ff00de';
+            //         context.fillText('NEON', cx, cy + 100);
+            //         context.fill();
+            //     } else {
+            //         context.shadowColor = '#ffffff';
+            //         context.shadowBlur -= 50;
+            //         context.fillText('NEON', cx, cy + 100);
+            //         context.fill();
+            //     }
+            // }
+        }
+        text()
+    </script>
+</body>
+
+</html>
