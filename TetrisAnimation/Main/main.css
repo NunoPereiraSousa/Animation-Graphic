@@ -62,12 +62,12 @@ h5 {
     border: 4px solid var(--main-color) !important;
 }
 
-a {
+a:not(.navText) {
     cursor: pointer;
     position: relative;
 }
 
-a:before {
+a:not(.navText):before {
     content: '';
     background: var(--galactic);
     position: absolute;
@@ -83,7 +83,7 @@ a:before {
     transition: opacity .3s ease-in-out;
 }
 
-a:hover:before {
+a:not(.navText):hover:before {
     opacity: 1;
 }
 
