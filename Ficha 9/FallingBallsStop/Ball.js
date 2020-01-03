@@ -1,0 +1,29 @@
+export default class Ball {
+    constructor(x, y, color, radius, vY, context, W, H, stop) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.radius = radius;
+        this.vY = vY
+        this.context = context;
+        this.W = W;
+        this.H = H;
+        this.stop = false
+    }
+
+    draw() {
+        this.context.fillStyle = this.color;
+        this.context.beginPath();
+        this.context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        this.context.fill();
+    }
+
+    update() {
+        // if (this.y >= this.H - this.radius) 
+        //     this.stop = true
+        // else this.y += this.vY
+
+        this.y >= this.H - this.radius ? this.stop = true : 
+        this.y += this.vY
+    }
+}
