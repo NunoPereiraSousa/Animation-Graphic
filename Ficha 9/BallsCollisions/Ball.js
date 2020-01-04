@@ -1,10 +1,12 @@
 export default class Ball {
-    constructor(x, y, color, radius, vY, context, W, H) {
+    constructor(x, y, color, vel, vx, vy, radius, direction, context, W, H) {
         this.x = x;
         this.y = y;
         this.color = color;
         this.radius = radius;
-        this.vY = vY
+        this.vel = vel;
+        this.vx = vx;
+        this.vy = vy;
         this.context = context;
         this.W = W;
         this.H = H;
@@ -18,9 +20,15 @@ export default class Ball {
     }
 
     update() {
-        if (this.y >= this.H + this.radius * 2) {
-            this.y = -this.radius
+        if (this.x - this.radius < 0 || this.x + this.radius > this.W) {
+            this.vx = -this.vx
         }
-        this.y += this.vY
+
+        if (this.y - this.radius < 0 || this.y + this.radius > this.H) {
+            this.vy = -this.vy
+        }
+
+        this.x += this.vx
+        this.y += this.vy
     }
 }

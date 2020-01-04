@@ -14,7 +14,7 @@ export default class Particle {
     draw() {
         this.context.fillStyle = this.color;
         this.context.beginPath();
-        this.context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+        this.context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         this.context.fill();
     }
 

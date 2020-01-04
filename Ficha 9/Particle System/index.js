@@ -16,8 +16,8 @@ function createParticles() {
         let radius = 5;
         let x = W / 2;
         let y = H / 4;
-        let vX = Math.floor(Math.random() * -3) + 6;
-        let vY = Math.floor(Math.random() * -2) + 4;
+        let vX = -3 + Math.random() * 6;
+        let vY = -2 + Math.random() * 4;
         let gravity = 0.1;
         particles.push(new Particle(x, y, color, radius, vX, vY, gravity, context, W, H))
     }
@@ -28,7 +28,7 @@ function render() {
 
     particles.forEach(particle => {
         particle.draw()
-        particle.update()
+        particle.update()        
     });
 
     window.requestAnimationFrame(render)
