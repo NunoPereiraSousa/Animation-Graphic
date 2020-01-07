@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>SVG Examples</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .container {
+            padding-top: 4em;
+            padding-bottom: 4em;
+        }
+        .col-6 {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6">
+                <h4 class="pt-3 pb-3">Rect</h4>
+                <svg width="500" height="500">
+                    <rect x="100" y="100" width="75" height="75" fill="transparent" stroke="green"
+                        stroke-dasharray="5,5" />
+                    <rect x="200" y="200" width="75" height="75" fill="transparent" stroke="red" rx="20" ry="20" />
+                    <rect x="300" y="300" width="75" height="75" stroke-width="20" stroke-opacity="0.2" fill="purple"
+                        stroke="blue" />
+                </svg>
+            </div>
+            <div class="col-6">
+                <h4 class="pt-3 pb-3">Circle</h4 class="pt-3 pb-3">
+                <svg width="250" height="300">
+                    <circle cx="50" cy="50" r="40" stroke="yellow" stroke-opacity="0.6" stroke-width="10"
+                        fill="orange" />
+                    <circle cx="200" cy="200" r="40" stroke="blue" stroke-opacity="0.1" stroke-width="10"
+                        fill="green" />
+                </svg>
+            </div>
+            <div class="col-6">
+                <h4 class="pt-3 pb-3">Ellipse</h4 class="pt-3 pb-3">
+                <svg width="450" height="300">
+                    <ellipse cx="200" cy="150" rx="90" ry="20" fill="yellow" />
+                    <ellipse cx="200" cy="175" rx="100" ry="20" fill="green" />
+                    <ellipse cx="200" cy="200" rx="110" ry="20" fill="purple" />
+                </svg>
+            </div>
+            <div class="col-6">
+                <h4 class="pt-3 pb-3">Lines</h4 class="pt-3 pb-3">
+                <svg width="450" height="300">
+                    <line x1="100" y1="100" x2="250" y2="250" stroke-dasharray="5,5" stroke="blue" stroke-width="4"
+                        stroke-opacity="0.5" />
+                    <line x1="100" y1="200" x2="200" y2="150" stroke="red" stroke-width="4" stroke-opacity="0.5" />
+                    <line x1="400" y1="100" x2="400" y2="250" stroke="green" stroke-width="20" stroke-opacity="0.5" />
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
