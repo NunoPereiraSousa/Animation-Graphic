@@ -1,98 +1,30 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <title>SVG Examples</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <style>
-        .container {
-            padding-top: 4.5em;
+	<title>SVG</title>
+	<meta charset="UTF-8">
+	<style>
+		svg circle:hover:first-child {
+            transition: all 2s ease-in-out;
+            transform: translateX(100px);
         }
 
-        .col-12 {
-            border: 2px solid #f37233;
+        svg circle:hover:first-child ~ circle {
+            transition: all 1.9s ease-in-out;
+            transition-delay: 2s;
+            transform: translateX(100px);
         }
-    </style>
+	</style>
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-12">
-                <h4 class="pt-3 pb-5">Text Path</h4>
-                <svg width="550" height="200">
-                    <defs>
-                        <path id="text" d="M0 100 l100 -50 l60 25 l150 -40 l250 100" style="fill: transparent;" />
-                    </defs>
-                    <text font-family="sans-serif" font-size="36" stroke="black" x="15">
-                        <textPath xlink:href="#text">Surviving the zombie <tspan fill="red" stroke="black"
-                                stroke-width="1" dy="0 10 -10 10 -10 8 0 -10 0 8">Apocalypse</tspan>
-                        </textPath>
-                    </text>
-                </svg>
-            </div>
-            <div class="col-12 mt-4">
-                <h4 class="pt-3 pb-5">Text Gradient</h4>
-                <svg width="550" height="200">
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0">
-                            <stop offset="0%" style="stop-color:crimson;stop-opacity:1" />
-                            <stop offset="43%" style="stop-color:orangered;stop-opacity:1" />
-                            <stop offset="44%" style="stop-color:gold;stop-opacity:1" />
-                            <stop offset="60%" style="stop-color:gold;stop-opacity:1" />
-                            <stop offset="61%" style="stop-color:skyblue;stop-opacity:1" />
-                            <stop offset="80%" style="stop-color:skyblue;stop-opacity:1" />
-                            <stop offset="81%" style="stop-color:mediumpurple;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:mediumpurple;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <text font-family="Times New Roman" font-size="150"  fill="url(#gradient)" text-anchor="middle"
-                        alignment-baseline="central" x="50%" y="50%">
-                        Hello!!!
-                    </text>
-                </svg>
-            </div>
-            <div class="col-12 mt-4" style="background: black; margin-bottom: 2em;">
-                <h4 class="pt-3 pb-5" style="color: white">Text Gradient Filter</h4>
-                <svg width="550" height="300">
-                    <defs>
-                        <radialGradient id="textGradient" cx="50%" cy="50%" r="75%">
-                            <stop offset="0%" style="stop-color:#fff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#333;stop-opacity:1" />
-                        </radialGradient>
-                        <filter id="filter">
-                            <feTurbulence baseFrequency="0.2" numOctaves="3" result="noise" />
-                            <feGaussianBlur in="SourceAlpha" stdDeviation="0.3" result="gauss" />
-                            <feDisplacementMap in="gauss" in2="noise" scale="10" result="disp" />
-                            <feComposite in="SourceGraphic" in2="disp" operator="in" />
-                        </filter>
-                    </defs>
-                    <text font-family="sans-serif" font-size="100" fill="url(#textGradient)" text-anchor="middle"
-                        alignment-baseline="central" x="50%" y="50%" filter="url(#filter)">
-                        Spooky
-                    </text>
-                </svg>
-            </div>
-        </div>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+	<h3>Exercise 1</h3>
+	<svg width="500" height="200">
+        <circle cx="50" cy="50" r="40" fill="pink" />
+        <circle cx="200" cy="50" r="20" fill="lightblue" />
+	</svg>
 </body>
 
 </html>
