@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        let rectW = 100;
+        let rectH = 50;
+        let x1 = 10
+        let y = W / 2 - 50
+        let x2 = W - rectW - 10
+        let vel = 2
+        let vel2 = 2
+
+        function render() {
+            context.clearRect(0, 0, W, H);
+
+            context.fillStyle = 'red';
+            context.fillRect(x1, y, rectW, rectH);
+            context.fill();
+
+            context.fillStyle = 'blue';
+            context.fillRect(x2, y, rectW, rectH);
+            context.fill();
+
+
+
+            if (x1 + rectW < x2 ||
+                x1 > x2 + rectW ||
+                y + rectW < y ||
+                y > y + rectW) {
+                x1 += vel
+                x2 += vel2
+            } else {
+                context.fillStyle = 'yellow';
+                context.fillRect(x1, y, rectW, rectH);
+                context.fill();
+
+                context.fillStyle = 'orange';
+                context.fillRect(x2, y, rectW, rectH);
+                context.fill();
+
+                x1 += vel
+                x2 += vel2
+            }
+
+            if (x1 > W - rectW || x1 < 0) {
+                vel = -vel
+            }
+
+            if (x2 > W - rectW || x2 < 0) {
+                vel2 = -vel2
+            }
+
+            window.requestAnimationFrame(render)
+        }
+        render()
+    </script>
+</body>
+
+</html>

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Falling Balls</title>
-
-    <style>
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Particle Emissary</title>
 </head>
 
 <body>
-    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black">
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px black;">
         Your browser does not support HTML5 Canvas.
     </canvas>
 
@@ -21,41 +20,42 @@
         const W = canvas.width;
         const H = canvas.height;
 
-        class Ball {
-            constructor(x, y, vX, vY, color, radius, gravity) {
+        class Particle {
+            constructor(x, y, vX, vY, color, gravity, radius) {
                 this.x = x;
                 this.y = y;
                 this.vX = vX;
                 this.vY = vY;
                 this.color = color;
-                this.radius = radius;
                 this.gravity = gravity;
+                this.radius = radius;
             }
 
             draw() {
                 context.fillStyle = this.color;
                 context.beginPath();
-                context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+                context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
                 context.fill();
             }
 
             update() {
-                this.x += this.vX
-                this.y += this.vY
-                this.vY += this.gravity
+                this.x += this.vX;
+                this.y += this.vY;
+                this.vY += this.gravity;
             }
 
             destroyed() {
                 if (this.y + this.radius * 2 >= H) {
-                    for (let i = 0; i < balls.length; i++) {
-                        balls.slice(i, 1)
+                    for (let i = 0; i < particles.length; i++) {
+                        particles.slice(i, 1)
                     }
                 }
             }
         }
-        let balls = new Array();
 
-        function createBall() {
+        let particles = []
+
+        function createParticles() {
             for (let i = 0; i < 5; i++) {
                 let color = "#FFFFFF";
                 let radius = 5;
@@ -64,18 +64,18 @@
                 let vX = -3 + Math.random() * 6;
                 let vY = -2 + Math.random() * 4;
                 let gravity = 0.1
-                balls.push(new Ball(x, y, vX, vY, color, radius, gravity))
+                particles.push(new Particle(x, y, vX, vY, color, gravity, radius))
             }
         }
 
         function render() {
-            createBall()
+            createParticles()
             context.fillStyle = "rgba(0,0,0, 0.25)"
             context.fillRect(0, 0, W, H);
 
-            balls.forEach(ball => {
-                ball.draw();
-                ball.update();
+            particles.forEach(particle => {
+                particle.draw();
+                particle.update();
             })
 
             window.requestAnimationFrame(render);

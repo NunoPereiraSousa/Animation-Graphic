@@ -16,7 +16,6 @@
 
         const W = canvas.width;
         const H = canvas.height;
-        let y = 0;
 
         class Ball {
             constructor(x, y, color, radius, vY) {
@@ -25,56 +24,54 @@
                 this.vY = vY;
                 this.color = color;
                 this.radius = radius
+                this.stop = false
             }
 
             draw() {
-                context.fillStyle = this.color;                
+                context.fillStyle = this.color;
                 context.beginPath();
                 context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
                 context.fill();
             }
 
             update() {
-                //check Canvas horizontal collisions
-                if (this.y >= H + this.radius * 2)
-                    this.y = -2 * this.radius
-                this.y += this.vY; //update vertical position 
+                if (this.y >= H - this.radius) {
+                    this.stop = true
+                } else {
+                    this.y += this.vY;
+                }
             }
         }
 
-        //setup as many balls as wanted
         let balls = new Array();
-        for (let i = 0; i < 5; i++) {
-            //random color
-            let R = Math.floor(Math.random() * 256);
-            let G = Math.floor(Math.random() * 256);
-            let B = Math.floor(Math.random() * 256);
-            let color = 'rgb(' + R + ',' + G + ',' + B + ')';
-            // let color = getRandomColor()
-            let radius = Math.floor((Math.random() * 10) + 20)
-            //random position (inside Canvas)
-            let x = radius + Math.random() * (W - 2 * radius);
-            y = -radius
-            let vY = 1 + Math.random() * 5
 
+        function createBall() {
+            let color = getRandomColor();
+            let radius = Math.floor((Math.random() * 10) + 20)
+            let x = radius + Math.random() * (W - 2 * radius);
+            let y = -2 * radius
+            let vY = 1 + Math.random() * 5
             balls.push(new Ball(x, y, color, radius, vY))
         }
 
+        createBall()
+
         function render() {
-            //fade Canvas
             context.fillStyle = "rgba(255,255,255,0.25)"
             context.fillRect(0, 0, W, H);
 
-            //draw & update
             balls.forEach(ball => {
                 ball.draw();
-                ball.update();
             });
 
-            //new frame
+            balls[balls.length - 1].update()
+            if (balls[balls.length - 1].stop) {
+                createBall()
+            }
+
             window.requestAnimationFrame(render);
         }
-        render(); //start animate
+        render();
 
         function getRandomColor() {
             let R = Math.floor(Math.random() * 256);

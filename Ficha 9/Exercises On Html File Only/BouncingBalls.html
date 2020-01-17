@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bouncing Balls</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border: solid 2px black">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        class Ball {
+            constructor(x, y, direction, color, radius, vX, vY, vel) {
+                this.x = x;
+                this.y = y;
+                this.vX = vX;
+                this.vY = vY;
+                this.vel = vel;
+                this.color = color;
+                this.radius = radius;
+                this.direction = direction;
+            }
+
+            draw() {
+                context.fillStyle = this.color;
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                context.fill();
+            }
+
+            update() {
+                if (this.x - 10 < 0 || this.x + 10 > W)
+                    this.vX = -this.vX;
+                if (this.y - 10 < 0 || this.y + 10 > H)
+                    this.vY = -this.vY;
+                this.x += this.vX;
+                this.y += this.vY;
+            }
+        }
+
+        let balls = [];
+        for (let i = 0; i < 50; i++) {
+            let color = ballsColors();
+            let direction = Math.random() * 2 * Math.PI;
+            let vel = Math.random() * 5;
+            let vX = vel * Math.cos(direction);
+            let vY = vel * Math.sin(direction);
+            let radius = Math.floor(Math.random() * 9) + 12;
+            let x = radius + Math.random() * (W - 2 * radius)
+            let y = radius + Math.random() * (H - 2 * radius)
+            balls.push(new Ball(x, y, direction, color, radius, vX, vY, vel))
+        }
+
+        function render() {
+            context.fillStyle = "rgba(255,255,255,0.25)"
+            context.fillRect(0, 0, W, H);
+
+            balls.forEach(function (ball) {
+                ball.draw();
+                ball.update();
+            });
+
+            window.requestAnimationFrame(render);
+        }
+        render();
+
+        function ballsColors() {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+    </script>
+</body>
+
+</html>
