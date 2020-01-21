@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Heart Animation</title>
+    <style>
+        svg {
+            border: 3px solid orange;
+            display: block;
+        }
+        path {
+            transition: all 2s ease-in-out;
+            stroke-linecap: round;
+            fill: red;
+            stroke: pink;
+            stroke-dashoffset: -125px;
+            stroke-dasharray: 125px;
+        }
+        path:hover {
+            fill: pink;
+            stroke-dashoffset: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="200px" height="200px">
+        <defs>
+            <filter id="filter" y="-10" width="200px" height="200px">
+                <feOffset in="SourceGraphic" dx="0" dy="0" end="off" />
+                <feGaussianBlur in="off" stdDeviation="2" end="blur1" />
+                <feGaussianBlur in="off" stdDeviation="5" end="blur2" />
+                <feGaussianBlur in="off" stdDeviation="15" end="blur3" />
+                <feMerge>
+                    <feMergeNode in="blur1" />
+                    <feMergeNode in="blur2" />
+                    <feMergeNode in="blur3" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
+        <path id="heart-path" filter="url(#filter)" d="M16,28.261c0,0-14-7.926-14-17.046c0-9.356,13.159-10.399,14-0.454c1.011-9.938,14-8.903,14,0.454
+    C30,20.335,16,28.261,16,28.261z" transform="scale(6,6)" fill="red">
+        </path>
+    </svg>
+</body>
+
+</html>
