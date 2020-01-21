@@ -61,7 +61,7 @@
             let direction = Math.random() * 2 * Math.PI
             let vel = Math.random() * 5;
             let vx = vel * Math.cos(direction)
-            let vy = Math.sin(direction)
+            let vy = vel * Math.sin(direction)
             let x = radius + Math.random() * (W - 2 * radius)
             let y = radius + Math.random() * (H - 2 * radius)
             balls.push(new Ball(x, y, color, radius, direction, vx, vy, vel))
