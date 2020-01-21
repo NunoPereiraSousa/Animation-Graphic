@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Walk Man</title>
+    <style>
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+        const rect = canvas.getBoundingClientRect()
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        let walkMan = new Image()
+        walkMan.src = "/Ficha 8/images/sprite.png"
+
+        walkMan.onload = function () {
+            setInterval(render, 100);
+        }
+
+        let frameIndex = 0
+
+        function render() {
+            context.clearRect(0, 0, W, H);
+            context.drawImage(walkMan, 0, frameIndex * 100, 100, 100, W / 2 - 50, H / 2 - 50, 100, 100);
+            frameIndex++
+            if (frameIndex === 5) {
+                frameIndex = 0
+            }
+        }
+    </script>
+</body>
+
+</html>

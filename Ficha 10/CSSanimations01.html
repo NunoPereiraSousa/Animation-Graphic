@@ -1,0 +1,62 @@
+<html>
+
+<title>CSS ANIMATIONS</title>
+<meta charset="UTF-8">
+<style>
+  svg {
+    border: 1px solid black;
+    display: block;
+  }
+
+  .ex1 {
+    animation: slide 5s 2;
+  }
+
+  .ex2 {
+    animation: slide 5s 2 forwards;
+  }
+
+  .ex3 {
+    animation: slide 5s infinite;
+  }
+
+  .ex4 {
+    animation: slide 5s infinite alternate-reverse;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(50px);
+    }
+
+    50% {
+      transform: translateX(450px);
+    }
+
+    100% {
+      transform: translateX(50px);
+    }
+  }
+</style>
+
+<body>
+  <h1>CSS ANIMATIONS - exercise 1</h1>
+  <svg width="500" height="650">
+    <circle class="ex1" cx="50" cy="100" r="50" stroke="black" stroke-width="5" fill="red">
+    </circle>
+
+    <circle class="ex2" cx="50" cy="250" r="50" stroke="black" stroke-width="5" fill="red">
+    </circle>
+
+    <circle class="ex3" cx="50" cy="400" r="50" stroke="black" stroke-width="5" fill="red">
+    </circle>
+
+    <circle class="ex4" cx="50" cy="550" r="50" stroke="black" stroke-width="5" fill="red">
+    </circle>
+  </svg>
+
+
+
+</body>
+
+</html>
