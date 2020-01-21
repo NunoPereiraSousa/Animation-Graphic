@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Space Ship</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1000" height="600" style="display: block;border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext('2d');
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        let ships = [];
+        const rect = canvas.getBoundingClientRect();
+        let mouseX = 0;
+        let mouseY = 0
+
+        let ship = new Image();
+        ship.src = "/Space Ship/sprite.png";
+
+        ship.onload = function () {
+            window.setInterval(render, 1000 / 30);
+        };
+
+        class Ship {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.frameIndex = 0;
+                this.width = 158;
+                this.height = 113;
+            }
+
+            draw() {
+                context.drawImage(ship, this.frameIndex * this.width, 0, this.width, this.height, this.x - this
+                    .width / 2, this.y - this.height, this.width, this.height);
+            }
+
+            update() {
+                this.frameIndex++;
+                if (this.frameIndex == 16) {
+                    this.frameIndex = 0;
+                }
+                this.x += (mouseX - this.x) / 100;
+                this.y += (mouseY - this.y) / 100;
+            }
+        }
+
+        let gradient = context.createLinearGradient(0, 0, 0, H);
+        gradient.addColorStop(0, '#023e54');
+        gradient.addColorStop(1, '#10aac0');
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, W, H);
+
+        function render() {
+            context.fillRect(0, 0, W, H);
+
+            ships.forEach(ship => {
+                ship.draw();
+                ship.update();
+            });
+        }
+
+        canvas.addEventListener('mousemove', e => {
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+            ships.forEach(ship => {
+                ship.update();
+            });
+        })
+
+        canvas.addEventListener('click', e => {
+            let x = mouseX;
+            let y = mouseY;
+            ships.push(new Ship(x, y))
+        })
+    </script>
+</body>
+
+</html>
