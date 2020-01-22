@@ -74,7 +74,7 @@
         createShip();
 
         function createShip() {
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 2; i++) {
                 let x = ship.width / 16 + Math.random() * (W - ship.width / 16);
                 console.log(x);
 
@@ -104,6 +104,16 @@
                 }
             }
         }
+
+        canvas.addEventListener('click', e => {
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+
+            ships.forEach(ship => {
+                ship.x += 20;
+                ship.y += 20;
+            });
+        })
 
         context.fillStyle = 'orange';
         context.fillRect(0, 0, W, H);
