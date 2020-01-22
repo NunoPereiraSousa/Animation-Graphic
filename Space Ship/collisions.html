@@ -66,11 +66,6 @@
                     this.vy = -this.vy;
                 }
 
-                // if ((this.x > this.width && this.x < this.x + this.width) ||
-                // (this.y > this.height && this.y < this.y + this.height)) {                    
-                //     this.vx = -this.vx;
-                //     this.vy = -this.vy;
-                // }
                 this.x += this.vx;
                 this.y += this.vy;
             }
@@ -79,7 +74,7 @@
         createShip();
 
         function createShip() {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 4; i++) {
                 let x = ship.width / 16 + Math.random() * (W - ship.width / 16);
                 console.log(x);
 
@@ -94,19 +89,21 @@
             }
         }
 
-        canvas.addEventListener('click', e => {
-
-            mouseX = e.clientX - rect.left;
-            mouseY = e.clientY - rect.top;
-
-            if ((mouseX > ships[ships
-                    .length - 1].x && mouseX < ships[ships.length - 1].x + ships[
-                    ships.length - 1].width) && (mouseY < myIceCreams[ships.length - 1].y +
-                    ships[ships.length - 1].height && mouseY > ships[ships.length -
-                        1].y)) {
-                ships.splice(ships.length - 1)
+        function collision() {
+            for (let i = 0; i < ships.length; i++) {
+                for (let j = 0; j < i + 1; j++) {
+                    if (!(ships[i].x + ships[i].width < ships[j].x ||
+                            ships[i].x > ships[j].x + ships[j].width ||
+                            ships[i].y + ships[i].height < ships[j].y ||
+                            ships[i].y > ships[j].y + ships[j].height)) {
+                        ships[i].vx = -ships[i].vx;
+                        ships[i].vy = -ships[i].vy;
+                        ships[j].vx = -ships[j].vx;
+                        ships[j].vy = -ships[j].vy;
+                    }
+                }
             }
-        });
+        }
 
         context.fillStyle = 'orange';
         context.fillRect(0, 0, W, H);
@@ -114,11 +111,27 @@
         function render() {
             context.fillRect(0, 0, W, H);
 
+            collision()
+
             ships.forEach(ship => {
                 ship.draw();
                 ship.update();
             });
         }
+
+        // canvas.addEventListener('click', e => {
+
+        //     mouseX = e.clientX - rect.left;
+        //     mouseY = e.clientY - rect.top;
+
+        //     if ((mouseX > ships[ships
+        //             .length - 1].x && mouseX < ships[ships.length - 1].x + ships[
+        //             ships.length - 1].width) && (mouseY < myIceCreams[ships.length - 1].y +
+        //             ships[ships.length - 1].height && mouseY > ships[ships.length -
+        //                 1].y)) {
+        //         ships.splice(ships.length - 1)
+        //     }
+        // });
     </script>
 </body>
 
