@@ -76,11 +76,7 @@
         function createShip() {
             for (let i = 0; i < 2; i++) {
                 let x = ship.width / 16 + Math.random() * (W - ship.width / 16);
-                console.log(x);
-
                 let y = ship.height / 16 + Math.random() * (H - ship.height / 16);
-                // let x = W / 2;
-                // let y = H / 2;
                 let direction = Math.random() * 2 * Math.PI;
                 let vel = Math.random() * 5;
                 let vx = vel * Math.cos(direction);
