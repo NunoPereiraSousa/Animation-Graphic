@@ -32,17 +32,17 @@
   }
 
   path {
-    animation: pathAnimation 5s infinite alternate-reverse;
+    stroke-dasharray: 1000;
+    stroke-linecap: round;
+    animation: pathAnimation 2s infinite alternate linear;
   }
 
   @keyframes pathAnimation {
     from {
-      stroke-dasharray: 0px;
-      stroke-dashoffset: 1000px;
+      stroke-dashoffset: 0;
     } 
     to {
-      stroke-dasharray: 1000px;
-      stroke-dashoffset: 0px;
+      stroke-dashoffset: 1000;
     }
   }
 </style>
