@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ice Cream</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border:solid 2px blue">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        const canvas = document.querySelector('#myCanvas');
+        const context = canvas.getContext("2d");
+
+        const W = canvas.width;
+        const H = canvas.height;
+
+        const rect = canvas.getBoundingClientRect()
+
+        class IceCream {
+            constructor(x, y, acceleration, vy, img) {
+                this.x = x;
+                this.y = y;
+                this.acceleration = acceleration;
+                this.vy = vy;
+                this.img = img;
+                this.stop = false;
+            }
+
+            draw() {
+                context.drawImage(this.img, this.x, this.y, this.img.width, this.img.height);
+            }
+
+            update() {
+                if (this.y >= H - 210) {
+                    this.img = iceCreamBrake;
+                    this.stop = true;
+                } else {
+                    this.y += this.vy
+                    this.vy += this.acceleration
+                }
+            }
+        }
+
+        let iceCreams = [];
+
+        let x = 0;
+        let y = 0;
+
+        let totalResources = 3;
+        let numResourcesLoaded = 0;
+        let fps = 60;
+
+        let iceCream = new Image()
+        iceCream.src = "/Ficha 8/images/gelado.png";
+        let iceCreamBrake = new Image()
+        iceCreamBrake.src = "/Ficha 8/images/gelado-partido.png";
+        let background = new Image()
+        background.src = "/Ficha 8/images/bg.png";
+
+        iceCream.onload = function () {
+            numResourcesLoaded++
+            resourceLoaded()
+        };
+
+        iceCreamBrake.onload = function () {
+            numResourcesLoaded++
+            resourceLoaded()
+        };
+
+        background.onload = function () {
+            numResourcesLoaded++
+            resourceLoaded()
+        };
+
+
+        function resourceLoaded() {
+            if (numResourcesLoaded == 3) {
+                setInterval(render, 1000 / fps); //start animation
+            }
+        }
+
+        createIceCream()
+
+        function createIceCream() {
+            let x = Math.random() * (W - 136)
+            let y = -80
+            let vy = 1;
+            let acceleration = 0.1;
+            let img = iceCream;
+            iceCreams.push(new IceCream(x, y, acceleration, vy, img))
+        }
+
+        canvas.addEventListener('click', e => {
+            x = e.clientX - rect.left
+            y = e.clientY - rect.top
+
+            if ((x > iceCreams[iceCreams.length - 1].x && x < iceCreams[iceCreams.length - 1].x + iceCreams[
+                        iceCreams.length - 1].img
+                    .width) &&
+                (y < iceCreams[iceCreams.length - 1].y + iceCreams[
+                    iceCreams.length - 1].img.height && y > iceCreams[iceCreams.length - 1].y)) {
+                iceCreams.splice(iceCreams.length - 1)
+            }
+        })
+
+        function render() {
+            context.clearRect(0, 0, W, H);
+            context.drawImage(background, 0, 0, W, H);
+
+            if (iceCreams.length === 0) {
+                createIceCream()
+            }
+
+            iceCreams.forEach(iceCream => {
+                iceCream.draw();
+            });
+
+            iceCreams[iceCreams.length - 1].update()
+            if (iceCreams[iceCreams.length - 1].stop) {
+                createIceCream()
+            }
+        }
+    </script>
+</body>
+
+</html>
